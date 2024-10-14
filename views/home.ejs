@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include('./partials/header') %>
+    
+</head>
+<body>
+    <%- include('./partials/navbar') %>
+
+ <div class="container mt-3 d-flex gap-3 flex-wrap ">
+   <% if (blogs.length>0) { %>
+    <%blogs.forEach(blog => { %>
+        <div class="card flex-grow-0 flex-shrink-0 " style="width: 16rem;">
+            <img src="<%=blog.coverImage %>" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><%=blog.title %></h5>
+              <p class="card-text"><%=blog.body.substring(0,60) %>....</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <a href="/blog/<%=blog._id%>" class="btn btn-primary">Read more</a>
+              <a href="/blog/like/<%=blog._id%>" class="text-decoration-none text-danger ">(<%= blog.Like.length %>)<i class="ri-heart-line text-danger"></i></a>
+              </div>
+            </div>
+          </div>
+          
+     <% }) %>
+   <% }else if(blogs.length===0) {%>
+    <h1>No Blogs Yet...</h1>
+  <% } %>
+ </div>
+
+    <%- include('./partials/script') %>
+</body>
+</html>
